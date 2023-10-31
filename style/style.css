@@ -1,0 +1,94 @@
+body {
+    font-family: Alice;
+    background-color: #f8edeb;
+}
+
+.pinky {
+    background-color: #f8edeb;
+}
+
+.magenda {
+    background-color: #70263d;
+    font-weight: 200;
+}
+
+.milky {
+    color: #f1e2e0;
+}
+
+.magenda_text {
+    color: #70263d;
+}
+
+.zero_radius {
+    border-radius: 0
+}
+
+.carousel-item {
+    height: 40em;
+}
+
+#welcome {
+    height: 300px;
+}
+
+#welcome_text {
+    width: 65%;
+}
+
+.foodtable_image {
+    height: 450px;
+}
+
+#menu {
+    height: 400px;
+}
+
+.bottom_layer {
+    height: 70px;
+}
+
+.contact {
+    height: 900px;
+}
+
+form {
+    width: 600px;
+}
+
+
+/* Slideshow container */
+.slideshow-container {
+    position: relative;
+    margin: auto;
+    height: 600px;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+  
+.mySlides.active {
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color:black;
+    font-weight: bold;
+    font-size: 60px;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
