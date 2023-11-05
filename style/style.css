@@ -92,3 +92,6 @@ form {
     border-radius: 3px 0 0 3px;
   }
 
+.blog-height{
+    min-height: 500px;
+}

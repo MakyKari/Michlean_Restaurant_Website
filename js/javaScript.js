@@ -174,3 +174,80 @@ document.getElementById('recieverCash').addEventListener('input', validateReciev
 document.getElementById('recieverPhone').addEventListener('input', validateRecieverPhone)
 document.getElementById('recieverName').addEventListener('input', validateRecieverName)
 document.getElementById('recieverEmail').addEventListener('input', validateRecieverEmail)
+
+
+
+// Yernazar's part
+
+// Add this code to the existing js/javaScript.js file
+
+// Function to handle registration
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var user = {
+        name: document.getElementById('registerName').value,
+        email: document.getElementById('registerEmail').value,
+        password: document.getElementById('registerPassword').value
+    };
+    localStorage.setItem(user.email, JSON.stringify(user));
+    alert('Registration successful!');
+    window.location.href = 'login.html';
+});
+
+// Function to handle login
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = document.getElementById('loginEmail').value;
+    var password = document.getElementById('loginPassword').value;
+    var user = JSON.parse(localStorage.getItem(email));
+
+    if(user && user.password === password) {
+        alert('Login successful!');
+        // Redirect to home page or user dashboard
+        window.location.href = 'index.html';
+    } else {
+        alert('Invalid email or password');
+    }
+});
+
+// Add this code to the existing js/javaScript.js file
+
+// Function to display user profile information
+function displayUserProfile() {
+    var userEmail = sessionStorage.getItem('loggedInUserEmail');
+    if (userEmail) {
+        var user = JSON.parse(localStorage.getItem(userEmail));
+        if (user) {
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userEmail').textContent = user.email;
+        } else {
+            alert('No user data found. Please log in again.');
+            window.location.href = 'login.html';
+        }
+    } else {
+        alert('No user is currently logged in.');
+        window.location.href = 'login.html';
+    }
+}
+
+// Call displayUserProfile if we are on the user.html page
+if (window.location.pathname.endsWith('user.html')) {
+    displayUserProfile();
+}
+// Function to handle login
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = document.getElementById('loginEmail').value;
+    var password = document.getElementById('loginPassword').value;
+    var user = JSON.parse(localStorage.getItem(email));
+
+    if(user && user.password === password) {
+        alert('Login successful!');
+        // Save the logged-in user email in sessionStorage
+        sessionStorage.setItem('loggedInUserEmail', email);
+        // Redirect to user account page
+        window.location.href = 'user.html'; // Redirect to the user profile page
+    } else {
+        alert('Invalid email or password');
+    }
+});

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Admin Dashboard</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="usersList">
+                <!-- User rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+    <div class="container mt-5">
+        <h2>Blog Management</h2>
+        <form id="blogForm">
+            <input type="hidden" id="editingIndex" value=""> <!-- Hidden input for tracking edit index -->
+            <div class="form-group">
+                <label for="blogTitle">Title</label>
+                <input type="text" class="form-control" id="blogTitle" placeholder="Enter blog title" required>
+            </div>
+            <div class="form-group">
+                <label for="blogContent">Content</label>
+                <textarea class="form-control" id="blogContent" rows="5" placeholder="Blog content" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="blogImage">Blog Image</label>
+                <input type="file" class="form-control-file" id="blogImage" accept="image/*">
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <hr>
+        <div id="blogsContainer">
+            <!-- Blogs will be listed here -->
+        </div>
+    </div>
+
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
