@@ -1,17 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    loadBlogPosts(); // Load posts when the page is ready
+    loadBlogPosts();
 });
 
 function loadBlogPosts() {
     let blogPosts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
-    // Sort posts by newest first by default when loading the page
     blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
     displayBlogPosts(blogPosts);
 }
 
 function displayBlogPosts(blogPosts) {
     let blogPostsContainer = document.getElementById('blogPostsContainer');
-    blogPostsContainer.innerHTML = ''; // Clear existing posts
+    blogPostsContainer.innerHTML = '';
     let row = document.createElement('div');
     row.className = 'row';
     blogPosts.forEach(function(post, index) {
@@ -42,7 +41,7 @@ function searchBlogs() {
     let filteredPosts = blogPosts.filter(post => {
         return post.title.toUpperCase().includes(filter) || post.content.toUpperCase().includes(filter);
     });
-    displayBlogPosts(filteredPosts); // Display only filtered posts
+    displayBlogPosts(filteredPosts);
 }
 
 function sortBlogs() {
@@ -54,5 +53,5 @@ function sortBlogs() {
         return (sortValue === 'newest') ? (dateB - dateA) : (dateA - dateB);
     });
 
-    displayBlogPosts(blogPosts); // Display sorted posts
+    displayBlogPosts(blogPosts);
 }

@@ -4,6 +4,6 @@ document.addEventListener('DOMContentLoaded', function(){
         document.getElementById('userName').textContent = currentUser.name;
         document.getElementById('userEmail').textContent = currentUser.email;
     } else {
-        window.location.href = 'login.html'; // Redirect to login if no session found
+        window.location.href = 'login.html';
     }
 });

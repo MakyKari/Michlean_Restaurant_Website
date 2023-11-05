@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadUsers() {
     let usersList = document.getElementById('usersList');
-    usersList.innerHTML = ''; // Clear the list first
+    usersList.innerHTML = '';
     Object.keys(localStorage).forEach(function(key){
         let user = JSON.parse(localStorage.getItem(key));
-        let row = usersList.insertRow(-1); // Insert a row at the end of the table
-        row.insertCell(0).innerText = usersList.rows.length; // Insert serial number
-        row.insertCell(1).innerText = user.name; // Insert user name
-        row.insertCell(2).innerText = user.email; // Insert user email
-        row.insertCell(3).innerText = user.password; // Insert user password
+        let row = usersList.insertRow(-1);
+        row.insertCell(0).innerText = usersList.rows.length;
+        row.insertCell(1).innerText = user.name;
+        row.insertCell(2).innerText = user.email;
+        row.insertCell(3).innerText = user.password;
         let deleteCell = row.insertCell(4);
         let deleteButton = document.createElement('button');
         deleteButton.className = 'btn btn-danger';
@@ -19,13 +19,13 @@ function loadUsers() {
         deleteButton.onclick = function() {
             if(confirm('Are you sure you want to delete this user?')) {
                 localStorage.removeItem(user.email);
-                loadUsers(); // Refresh the list
+                loadUsers();
             }
         };
         deleteCell.appendChild(deleteButton);
     });
 }
-// Function to handle blog form submission
+
 document.getElementById('blogForm').addEventListener('submit', function(event) {
     event.preventDefault();
     let editingIndex = document.getElementById('editingIndex').value;
@@ -38,10 +38,8 @@ document.getElementById('blogForm').addEventListener('submit', function(event) {
     function savePost(imageUrl) {
         let blogPost = { title, content, image: imageUrl, date: currentDate };
         if (editingIndex !== '') {
-            // Update existing blog post
             blogPosts[editingIndex] = blogPost;
         } else {
-            // Add new blog post
             blogPosts.push(blogPost);
         }
         localStorage.setItem('blogPosts', JSON.stringify(blogPosts));
@@ -52,14 +50,13 @@ document.getElementById('blogForm').addEventListener('submit', function(event) {
     if (blogImage) {
         let reader = new FileReader();
         reader.onload = function(e) {
-            savePost(e.target.result); // Save post with image as Base64
+            savePost(e.target.result);
         };
         reader.readAsDataURL(blogImage);
     } else if (editingIndex !== '') {
-        // When editing, if no new image is provided, use the old one
         savePost(blogPosts[editingIndex].image);
     } else {
-        savePost(''); // Save post without an image
+        savePost('');
     }
 });
 
@@ -75,7 +72,7 @@ function loadBlogs() {
     blogsContainer.innerHTML = '';
     let blogPosts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
 
-    let blogsHTML = '<div class="row">'; // Start the row outside the loop
+    let blogsHTML = '<div class="row">';
 
     blogPosts.forEach(function(post, index) {
         blogsHTML += `
@@ -110,8 +107,6 @@ function editBlog(index) {
     document.getElementById('blogTitle').value = post.title;
     document.getElementById('blogContent').value = post.content;
     document.getElementById('editingIndex').value = index;
-    // If there's an image, show a preview or some placeholder
-    // ... (You may add an image preview functionality here if needed)
 }
 
 function deleteBlog(index) {
@@ -123,7 +118,6 @@ function deleteBlog(index) {
     }
 }
 
-// Call these functions on page load to display existing data
 document.addEventListener('DOMContentLoaded', function() {
     loadUsers();
     loadBlogs();
